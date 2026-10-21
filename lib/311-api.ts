@@ -95,10 +95,13 @@ export async function fetchResolutionStats(): Promise<ResolutionStats> {
     '$limit': '200',
   })
 
+  const cacheOpts = { next: { revalidate: 3600 }, headers, signal: AbortSignal.timeout(8000) }
+
   try {
-    const [totalRes, recentRes] = await Promise.all([
-      fetch(totalUrl, { cache: 'no-store', headers, signal: AbortSignal.timeout(15000) }),
-      fetch(recentUrl, { cache: 'no-store', headers, signal: AbortSignal.timeout(15000) }),
+    const [totalRes, recentRes, avgRes] = await Promise.all([
+      fetch(totalUrl, cacheOpts),
+      fetch(recentUrl, cacheOpts),
+      fetch(avgUrl, cacheOpts),
     ])
     if (!totalRes.ok || !recentRes.ok) throw new Error('Stats fetch failed')
     const [totalRow] = await totalRes.json() as [{ total: string }]
@@ -106,7 +109,6 @@ export async function fetchResolutionStats(): Promise<ResolutionStats> {
 
     let avgResolutionDays: number | null = null
     try {
-      const avgRes = await fetch(avgUrl, { cache: 'no-store', headers, signal: AbortSignal.timeout(15000) })
       if (avgRes.ok) {
         const avgRows = await avgRes.json() as { created_date: string; closed_date: string }[]
         const diffs = avgRows
