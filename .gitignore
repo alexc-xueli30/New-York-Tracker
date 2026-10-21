@@ -15,3 +15,8 @@ node_modules/
 # Build artifacts
 *.tsbuildinfo
 next-env.d.ts
+
+# AI tool artifacts (internal, not for public repos)
+.gstack/
+.superpowers/
+docs/designs/*.review.*
