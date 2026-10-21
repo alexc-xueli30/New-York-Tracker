@@ -1,0 +1,40 @@
+<h2>Where do community photos come from?</h2>
+<p class="subtitle">311 reports don't include photos. Three ways to get them into the feed.</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>User upload (needs Supabase setup)</h3>
+      <p>Add a camera button in the feed — tap to snap a photo of a pothole, broken light, etc. Photo + caption + location stored in Supabase. Shows up in the unified feed next to news articles. <strong>Requires setting up a real Supabase project</strong> (currently using placeholder URL). Most powerful, most work.</p>
+      <div class="pros-cons" style="margin-top:10px">
+        <div class="pros"><h4>Pros</h4><ul><li>Real civic participation</li><li>Visual evidence of issues</li><li>Tied to specific locations</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Need Supabase configured</li><li>Moderation challenge</li><li>Storage costs</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Skip photos — news feed only for now</h3>
+      <p>Launch with the NYC civic news feed (Gothamist, City Limits, WNYC RSS) — zero setup, works today. Add community photo upload in a future version once Supabase is configured. The unified feed just shows news cards in the meantime.</p>
+      <div class="pros-cons" style="margin-top:10px">
+        <div class="pros"><h4>Pros</h4><ul><li>Works immediately, no backend</li><li>RSS is free forever</li><li>Clean scope</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>No community participation yet</li><li>Less "spotted" feeling</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>311 report cards as "sightings" (no real photos)</h3>
+      <p>Instead of photos, show 311 complaint cards in the feed — same data as the map but formatted as a vertical timeline card with severity badge, address, borough, and a colored severity banner where a photo would be. News articles interleaved. No extra setup needed.</p>
+      <div class="pros-cons" style="margin-top:10px">
+        <div class="pros"><h4>Pros</h4><ul><li>Uses data already loaded</li><li>No Supabase needed</li><li>Looks like a real feed</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>No real community photos</li><li>Redundant with the map</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>

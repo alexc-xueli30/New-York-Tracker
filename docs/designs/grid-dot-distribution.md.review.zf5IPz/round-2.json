@@ -1,0 +1,55 @@
+{
+  "version": 2,
+  "round": 2,
+  "document": "/Users/alexchen/projects/Mamdani Tracker/docs/designs/grid-dot-distribution.md",
+  "quality_score": 9,
+  "dimensions": {
+    "completeness": "PASS",
+    "consistency": "PASS",
+    "clarity": "ISSUES",
+    "scope": "PASS",
+    "feasibility": "PASS"
+  },
+  "findings": [
+    {
+      "id": "R2-1",
+      "dimension": "clarity",
+      "severity": "minor",
+      "changed_text": "the same ISR cache tag as the current single",
+      "problem": "The comment describes `{ next: { revalidate: 1800 } }` as 'the same ISR cache tag as the current single query.' `revalidate` is a time-based ISR interval, not a cache tag; tags are set via `next: { tags: [...] }`. Calling a revalidate interval a 'cache tag' is technically incorrect and could mislead an engineer adding on-demand revalidation later.",
+      "remedy": "Replace 'the same ISR cache tag' with 'the same ISR revalidation interval' (or simply 'matching the current 1800s ISR interval') to use accurate Next.js terminology."
+    }
+  ],
+  "prior": [
+    {
+      "id": "R1-1",
+      "status": "resolved",
+      "evidence": "Approach A now includes a concrete $where example using the latitude/longitude range form: `latitude BETWEEN 40.48 AND 40.59 AND longitude BETWEEN -74.27 AND -74.156`.",
+      "current_id": null
+    },
+    {
+      "id": "R1-2",
+      "status": "resolved",
+      "evidence": "Approach A now states 'Returns up to 120 unique records spanning all of NYC' and 'The UI renders whatever count is returned; the caller should expect a variable total of up to 120 rather than a fixed count.'",
+      "current_id": null
+    },
+    {
+      "id": "R1-3",
+      "status": "resolved",
+      "evidence": "Approach A now states each fetch is passed `{ next: { revalidate: 1800 } }` so 'the 20 parallel fetches are each cached independently by Next.js; repeat page loads hit the cache, not the Socrata API.'",
+      "current_id": null
+    },
+    {
+      "id": "R1-4",
+      "status": "resolved",
+      "evidence": "The duplicate empty-cell entry was removed from Open Questions and replaced with 'Decided: empty cells (water-only areas, large parks) return [] and are dropped silently.' The ambiguity is gone.",
+      "current_id": null
+    },
+    {
+      "id": "R1-5",
+      "status": "resolved",
+      "evidence": "Success criterion 1 now reads 'dots visible in complaint-generating areas of all 5 boroughs (inner neighborhoods of each borough; outer/remote areas may remain empty if no complaints were filed there recently -- that's correct behavior, not a bug).' The unachievable guarantee of specific outer neighborhoods is removed.",
+      "current_id": null
+    }
+  ]
+}
